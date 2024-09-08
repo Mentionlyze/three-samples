@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Three Samples</title>
+  <style>
+    html,
+    body {
+      font-family: Avenir, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+    }
+
+    .menu {
+      width: 200px;
+      height: 100%;
+      border-right: 1px solid #888;
+      overflow: auto;
+      padding: 0 10px;
+    }
+
+    .menu>a {
+      display: block;
+      margin: 5px 0;
+      color: #045b88;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a.active {
+      color: red;
+    }
+
+    iframe {
+      flex-grow: 1;
+      border: none;
+    }
+
+    .src {
+      position: fixed;
+      right: 10px;
+      bottom: 10px;
+      height: 40px;
+      width: 40px;
+      background: #fff;
+      text-align: center;
+      font-size: 16px;
+      line-height: 40px;
+      border-radius: 50%;
+      border: none;
+      opacity: 0.6;
+      cursor: pointer;
+      text-decoration: none !important;
+    }
+
+    .src:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu">
+    <h3>Three Samples</h3>
+    <hr />
+    <a class="sample active" target="hello">Hello </a>
+    <a class="sample" target="camera">Camera</a>
+    <a class="sample" target="resizing">Resizing</a>
+    <a class="sample" target="geometry">Geometry</a>
+    <a class="sample" target="texture">Texture</a>
+    <a class="sample" target="materail">Materail</a>
+    <a class="sample" target="lights">Lights</a>
+    <a class="sample" target="shadows">Shadows</a>
+    <a class="sample" target="haunted_house">Haunted House</a>
+    <a class="sample" target="particles">Particles</a>
+    <a class="sample" target="galaxy">Galaxy</a>
+    <a class="sample" target="scroll_based_animation">Scroll Based Animation</a>
+  </div>
+  <iframe></iframe>
+  <script type="module" src="./src/main.ts">
+  </script>
+</body>
+
+</html>
