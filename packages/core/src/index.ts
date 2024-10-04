@@ -1,4 +1,4 @@
-import * as Three from 'three'
+import * as THREE from 'three'
 
 const defaultCameraConfig = {
     fov: 75,
@@ -7,23 +7,27 @@ const defaultCameraConfig = {
     far: 1000
 }
 
-const defaultRendererConfig: Three.WebGLRendererParameters = {
-    antialias: true
+const defaultRendererConfig: THREE.WebGLRendererParameters = {
+
+    antialias: true,
 }
 
-export function createThreeContext(dom: HTMLElement | HTMLBodyElement, cameraConfig: Record<string, any> = defaultCameraConfig, rendererConfig: Three.WebGLRendererParameters = defaultRendererConfig) {
-    const scene = new Three.Scene()
-    const camera = new Three.PerspectiveCamera(cameraConfig.fov, cameraConfig.aspectRatio, cameraConfig.near, cameraConfig.far)
+export function createThreeContext(dom: HTMLCanvasElement, cameraConfig: Record<string, any> = defaultCameraConfig, rendererConfig: THREE.WebGLRendererParameters = defaultRendererConfig) {
+    const scene = new THREE.Scene()
+    const camera = new THREE.PerspectiveCamera(cameraConfig.fov, cameraConfig.aspectRatio, cameraConfig.near, cameraConfig.far)
     camera.position.z = 5
-    const renderer = new Three.WebGLRenderer(rendererConfig)
-
+    const renderer = new THREE.WebGLRenderer({ ...rendererConfig, canvas: dom })
+    renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setPixelRatio(window.devicePixelRatio)
-    renderer.setSize(dom.clientWidth, dom.clientHeight)
 
-    dom.appendChild(renderer.domElement)
+    renderer.shadowMap.enabled = true
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
-    dom.addEventListener('resize', () => {
-        renderer.setSize(dom.clientWidth, dom.clientHeight)
+    document.body.appendChild(renderer.domElement)
+
+    window.addEventListener('resize', () => {
+        console.log('resize')
+        renderer.setSize(window.innerWidth, window.innerHeight)
         camera.aspect = dom.clientWidth / dom.clientHeight
         camera.updateProjectionMatrix()
     })

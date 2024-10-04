@@ -6,16 +6,26 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate": "node ./bin/index.js"
+  },
+  "bin": {
+    "generate": "./bin/index.js"
   },
   "dependencies": {
     "@three-samples/core": "workspace:*",
+    "cannon-es": "^0.20.0",
+    "ejs": "^3.1.10",
     "gsap": "^3.12.5",
+    "lil-gui": "^0.19.2",
+    "prettier": "^3.3.3",
     "three": "^0.168.0"
   },
   "devDependencies": {
-    "@types/three": "^0.168.0",
-    "typescript": "^5.5.3",
-    "vite": "^5.4.1"
+    "@types/cannon": "^0.1.13",
+    "@types/three": "0.168.0",
+    "fast-glob": "^3.3.2",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8"
   }
 }
