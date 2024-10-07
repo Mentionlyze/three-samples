@@ -15,7 +15,15 @@ const wrapper = document.getElementById('<%= sample %>_wrapper') as HTMLCanvasEl
     const controls = new OrbitControls(camera, renderer.domElement)
     controls.enableDamping = true
 
+    const clock = new THREE.Clock()
+    let lastFrameTime = 0
+
     function tick() {
+
+    const elapsedTime = clock.getElapsedTime()
+    const deltaTime = elapsedTime - lastFrameTime
+    lastFrameTime = elapsedTime
+
     controls.update()
     renderer.render(scene, camera)
     requestAnimationFrame(tick)
