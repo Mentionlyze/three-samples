@@ -1,25 +1,23 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { createThreeContext } from '@three-samples/core'
-import vertexShader from './shaders/vertexShader.glsl'
-import fragmentShader from './shaders/fragmentShader.glsl'
+import vertexShader from './shaders/vertex.glsl'
+import fragmentShader from './shaders/fragment.glsl'
 
-const wrapper = <HTMLCanvasElement>document.getElementById('18_shader_patterns_wrapper')
+const wrapper = document.getElementById('19_raging_sea_wrapper') as HTMLCanvasElement
 
 const { scene, camera, renderer } = createThreeContext(wrapper)
-camera.position.x = 0
-camera.position.y = 0
+camera.position.x = 3
+camera.position.y = 2
 
-const geometry = new THREE.PlaneGeometry(5, 5, 32, 32)
-const material = new THREE.ShaderMaterial({
+const geometry = new THREE.PlaneGeometry(5, 5, 128, 128)
+const material = new THREE.RawShaderMaterial({
   vertexShader,
   fragmentShader,
   side: THREE.DoubleSide,
-  uniforms: {
-    u_Color: { value: new THREE.Color('purple') },
-  },
 })
 const mesh = new THREE.Mesh(geometry, material)
+mesh.rotation.x = -Math.PI * 0.5
 scene.add(mesh)
 
 const controls = new OrbitControls(camera, renderer.domElement)
