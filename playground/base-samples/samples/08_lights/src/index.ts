@@ -5,7 +5,7 @@ import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHel
 import GUI from 'lil-gui'
 
 const gui = new GUI({
-    width: 300
+  width: 300,
 })
 
 const wrapper = document.getElementById('08_lights_wrapper') as HTMLCanvasElement
@@ -13,7 +13,6 @@ const wrapper = document.getElementById('08_lights_wrapper') as HTMLCanvasElemen
 const { scene, camera, renderer } = createThreeContext(wrapper)
 camera.position.x = 3
 camera.position.y = 2
-
 
 const ambientLight = new THREE.AmbientLight()
 ambientLight.color = new THREE.Color(0xffffff)
@@ -43,7 +42,7 @@ scene.add(spotLight)
 spotLight.target.position.x = -0.75
 scene.add(spotLight.target)
 
-// Helpers
+//Helpers
 const hemisphereLightHelper = new THREE.HemisphereLightHelper(hemisphereLight, 0.2)
 scene.add(hemisphereLightHelper)
 
@@ -84,18 +83,17 @@ controls.enableDamping = true
 const clock = new THREE.Clock()
 
 function tick() {
-    const clapsedTime = clock.getElapsedTime()
+  const clapsedTime = clock.getElapsedTime()
 
-    cube.rotation.x = 0.1 * clapsedTime
-    cube.rotation.y = 0.1 * clapsedTime
+  cube.rotation.x = 0.1 * clapsedTime
+  cube.rotation.y = 0.1 * clapsedTime
 
-    torus.rotation.x = 0.1 * clapsedTime
-    torus.rotation.y = 0.1 * clapsedTime
+  torus.rotation.x = 0.1 * clapsedTime
+  torus.rotation.y = 0.1 * clapsedTime
 
-
-    controls.update()
-    renderer.render(scene, camera)
-    requestAnimationFrame(tick)
+  controls.update()
+  renderer.render(scene, camera)
+  requestAnimationFrame(tick)
 }
 
 tick()
