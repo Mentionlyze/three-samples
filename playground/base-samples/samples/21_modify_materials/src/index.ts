@@ -15,12 +15,12 @@ const gltfLoader = new GLTFLoader()
 const cubeTextureLoad = new THREE.CubeTextureLoader()
 
 const updateAllMaterial = () => {
-  scene.traverse((child) => {
-    if ((<THREE.Mesh>child).isMesh && (<THREE.Mesh>child).material instanceof THREE.MeshStandardMaterial) {
-      ;((<THREE.Mesh>child).material as THREE.MeshStandardMaterial).envMapIntensity = 1
-      ;((<THREE.Mesh>child).material as THREE.MeshStandardMaterial).needsUpdate = true
-      ;(<THREE.Mesh>child).castShadow = true
-      ;(<THREE.Mesh>child).receiveShadow = true
+  scene.traverse((child: any) => {
+    if (child.isMesh && child.material instanceof THREE.MeshStandardMaterial) {
+      child.material.envMapIntensity = 1
+      child.material.needsUpdate = true
+      child.castShadow = true
+      child.receiveShadow = true
     }
   })
 }
@@ -39,7 +39,6 @@ scene.background = environmentMap
 scene.environment = environmentMap
 
 const mapTexture = textureLoader.load('./static/models/LeePerrySmith/color.jpg')
-environmentMap.colorSpace = THREE.SRGBColorSpace
 
 const normalTexture = textureLoader.load('./static/models/LeePerrySmith/normal.jpg')
 
